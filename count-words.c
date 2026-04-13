@@ -9,7 +9,7 @@ char *words(int count)
 {
   char *words = "words";
   if (count == 1)
-    	words[strlen(words)-1] = '\0';
+    	words = "word";
   
   return words;
 }
@@ -19,7 +19,7 @@ int print_word_count(char **argv)
 {
   int count = 0;
   char **a = argv;
-  while (*(a++))
+  while (*(a++)) //if there is something in argv memory. keep going and 
     ++count;
   char *wordss = words(count);
   printf("The sentence contains %d %s.\n", count, wordss);
