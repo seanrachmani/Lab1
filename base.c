@@ -121,30 +121,7 @@ void menu(){
 
 
 
-/*
-A user should be able to terminate the program when asked for a choice, by signaling EOF using 'Ctrl+D' on an empty line.
-
-For example, the menu structure initialized as the menu[]
- above should be printed (exact format not very important, that TA may ask you to change it, regardless):
-<h>ello
-<b>ye
-
-
-*/
-
-
-
 int main(int argc, char **argv){
-  /*
-  int base_len = 5;
-  char arr1[base_len];
-  char* arr2 = map(arr1, base_len, my_get);
-  char* arr3 = map(arr2, base_len, dprt);
-  char* arr4 = map(arr3, base_len, cxprt);
-  free(arr2);
-  free(arr3);
-  free(arr4);
-  */
   menu();
 }
 
