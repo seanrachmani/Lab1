@@ -113,8 +113,9 @@ void menu(){
         printf("function not supported\n");
       }   
     }      
-  exit(0);
   free(carray);
+  exit(0);
+  
 }
 
 
