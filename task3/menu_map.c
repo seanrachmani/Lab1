@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 
+struct fun_desc {
+char *name;
+char index;
+char (*fun)(char);
+};
+
+
+ /*========================part2======================================*/
 //task 2a
 char* map(char *array, int array_length, char (*f) (char)){
   char* mapped_array = (char*)(malloc(array_length*sizeof(char)));
@@ -72,4 +80,45 @@ char dprt(char c){
   return c;
 }
 
+
+/*========================part3======================================*/
+struct fun_desc menu1[] = { { "<m>y_get", 'm', my_get}, { "<c>xprt", 'c',cxprt }, { "<e>ncrypt", 'e',encrypt }, { "<d>ecrypt", 'd',decrypt },  { "<p>dprt", 'p',dprt },{ NULL, 0, NULL } };
+void menu(){
+  char* carray = (char*)(malloc(5));
+  //init to empty string:
+  carray[0]='\0'; //null charachter 
+    while(feof(stdin)==0){//we have more 
+      fprintf(stdout,"Select operation from the following menu by index:\n");
+      int idx=0;
+      while(menu1[idx].fun!=NULL){
+          printf("%s\n",menu1[idx].name);
+          idx++;
+      }
+      
+      //code taken from tutorialsPoint:
+      char buffer[50]; //array of chars
+      fgets(buffer, sizeof(buffer), stdin);
+      //end of taken code
+      int isError = 1;
+      for(int i=0;menu1[i].fun!=NULL;i++){
+        if(buffer[0]==menu1[i].index){
+          char* tmp =  map(carray,5,menu1[i].fun);
+          free(carray);
+          carray= tmp;
+          isError = 0;
+        }
+      }
+      if(isError==1){
+        printf("function not supported\n");
+      }   
+    }      
+  free(carray);
+  exit(0);
+  
+}
+
+
+int main(int argc, char **argv){
+  menu();
+}
 
