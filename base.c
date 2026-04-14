@@ -87,13 +87,12 @@ struct fun_desc menu1[] = { { "<m>y_get", 'm', my_get}, { "<c>xprt", 'c',cxprt }
 void menu(){
   char* carray = (char*)(malloc(5));
   //init to empty string:
-  char[0]='\0' //null charachter 
+  carray[0]='\0'; //null charachter 
     while(feof(stdin)==0){//we have more 
-      fprintf(stdout,"Select operation from the following menu by index:");
+      fprintf(stdout,"Select operation from the following menu by index:\n");
       int idx=0;
-      while(menu1[index].fun!=NULL){
-          printf(menu1[idx].name);
-          printf("\n");
+      while(menu1[idx].fun!=NULL){
+          printf("%s\n",menu1[idx].name);
           idx++;
       }
       
@@ -102,21 +101,20 @@ void menu(){
       fgets(buffer, sizeof(buffer), stdin);
       //end of taken code
       int isError = 1;
-      for(int i=0;i<arrayLen;i++){
-        if(strcmp(buffer[0],menu1[i].index) == 0){
+      for(int i=0;menu1[i].fun!=NULL;i++){
+        if(buffer[0]==menu1[i].index){
           char* tmp =  map(carray,5,menu1[i].fun);
           free(carray);
           carray= tmp;
           isError = 0;
         }
-        if(isError==1){
-           printf("function not supported");
-        }
-       
       }
-      
-  }   
+      if(isError==1){
+        printf("function not supported\n");
+      }   
+    }      
   exit(0);
+  free(carray);
 }
 
 
